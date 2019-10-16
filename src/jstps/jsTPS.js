@@ -16,16 +16,16 @@
 class jsTPS {
     constructor(){
         // THE TRANSACTION STACK
-        var transactions = [];
+        this.transactions = [];
     
         // KEEPS TRACK OF WHERE WE ARE IN THE STACK, THUS AFFECTING WHAT
         // TRANSACTION MAY BE DONE OR UNDONE AT ANY GIVEN TIME
-        var mostRecentTransaction = -1;
+        this.mostRecentTransaction = -1;
         
         // THESE VARIABLES CAN BE TURNED ON AND OFF TO SIGNAL THAT
         // DO AND UNDO OPERATIONS ARE BEING PERFORMED
-        var performingDo = false;
-        var performingUndo = false;
+        this.performingDo = false;
+        this.performingUndo = false;
     }
     /**
      * Tests to see if the do (i.e. redo) operation is currently being
@@ -62,8 +62,8 @@ class jsTPS {
     addTransaction(transaction) {
         // ARE THERE OLD UNDONE TRANSACTIONS ON THE STACK THAT FIRST
         // NEED TO BE CLEARED OUT, i.e. ARE WE BRANCHING?
-        if ((this.mostRecentTransaction < 0) || (this.mostRecentTransaction < (this.transactions.size()-1))) {
-            for (var i = transactions.size()-1; i > mostRecentTransaction; i--) {
+        if ((this.mostRecentTransaction < 0) || (this.mostRecentTransaction < (this.transactions.length-1))) {
+            for (var i = this.transactions.length-1; i > this.mostRecentTransaction; i--) {
                 this.transactions.splice(i, 1);
             }
         }
@@ -72,7 +72,7 @@ class jsTPS {
         this.transactions.push(transaction);
 
         // AND EXECUTE IT
-        doTransaction();        
+        this.doTransaction();        
     }
 
     /**
@@ -81,9 +81,9 @@ class jsTPS {
      * at the top of the TPS stack or somewhere in the middle (i.e. a redo).
      */
     doTransaction() {
-        if (hasTransactionToRedo()) {
+        if (this.hasTransactionToRedo()) {
             this.performingDo = true;
-            var transaction = transactions[mostRecentTransaction+1];
+            var transaction = this.transactions[this.mostRecentTransaction+1];
             transaction.doTransaction();
             this.mostRecentTransaction++;
             this.performingDo = false;
@@ -98,8 +98,8 @@ class jsTPS {
      * there is no transaction to undo, null is returned.
      */
     peekUndo() {
-        if (hasTransactionToUndo()) {
-            return this.transactions[mostRecentTransaction];
+        if (this.hasTransactionToUndo()) {
+            return this.transactions[this.mostRecentTransaction];
         }
         else
             return null;
@@ -113,8 +113,8 @@ class jsTPS {
      * there is no transaction to undo, null is returned.
      */    
     peekDo() {
-        if (hasTransactionToRedo()) {
-            return this.transactions[mostRecentTransaction+1];
+        if (this.hasTransactionToRedo()) {
+            return this.transactions[this.mostRecentTransaction+1];
         }
         else
             return null;
@@ -125,9 +125,9 @@ class jsTPS {
      * TPS stack and undoes it, moving the TPS counter accordingly.
      */
     undoTransaction() {
-        if (hasTransactionToUndo()) {
+        if (this.hasTransactionToUndo()) {
             this.performingUndo = true;
-            var transaction = transactions[mostRecentTransaction];
+            var transaction = this.transactions[this.mostRecentTransaction];
             transaction.undoTransaction();
             this.mostRecentTransaction--;
             this.performingUndo = false;
@@ -145,7 +145,7 @@ class jsTPS {
         
         // MAKE SURE TO RESET THE LOCATION OF THE
         // TOP OF THE TPS STACK TOO
-        mostRecentTransaction = -1;        
+        this.mostRecentTransaction = -1;        
     }
     
     /**
@@ -167,7 +167,7 @@ class jsTPS {
      * @return The number of transactions in the stack that can be redone.
      */
     getRedoSize() {
-        return getSize() - this.mostRecentTransaction - 1;
+        return this.getSize() - this.mostRecentTransaction - 1;
     }
 
     /**
@@ -213,9 +213,11 @@ class jsTPS {
         text += "--Current Index on Stack: " + this.mostRecentTransaction + "\n";
         text += "--Current Transaction Stack:\n";
         for (var i = 0; i <= this.mostRecentTransaction; i++) {
-            var jT = transactions[i];
+            var jT = this.transactions[i];
             text += "----" + jT + "\n";
         }
         return text;
     }
 }
+
+export default jsTPS;

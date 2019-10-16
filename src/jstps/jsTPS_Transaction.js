@@ -17,10 +17,16 @@ class jsTPS_Transaction {
     /**
      * This method is called by jTPS when a transaction is executed.
      */
-    doTransaction();
+    doTransaction(){
+
+    }
     
     /**
      * This method is called by jTPS when a transaction is undone.
      */
-    undoTransaction();
+    undoTransaction(){
+
+    }
 }
+
+export default jsTPS_Transaction

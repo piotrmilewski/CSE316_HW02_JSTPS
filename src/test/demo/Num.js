@@ -13,7 +13,7 @@ class Num {
 
     constructor(){
         // THE NUMBER THIS CLASS MANAGES
-        var num = 0;
+        this.num = 0;
     }
     /**
      * Mutator method for the num instance variable.
@@ -41,3 +41,5 @@ class Num {
         this.num = this.num | mask;
     }
 }
+
+export default Num;

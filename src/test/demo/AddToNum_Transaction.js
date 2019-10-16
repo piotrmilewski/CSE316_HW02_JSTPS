@@ -1,6 +1,6 @@
 //package demo;
 
-//import jtps.jTPS_Transaction;
+import jsTPS_Transaction from '../../jstps/jsTPS_Transaction'
 
 /**
  * AddToNum_Transaction.java
@@ -13,13 +13,6 @@
  * @version 2.0
  */
 class AddToNum_Transaction extends jsTPS_Transaction {
-    constructor(){
-        // THIS IS THE OBJECT IT WILL MANIPULATE
-        var num;
-    
-        // AMOUNT TO ADD/REMOVE FOR NUM
-        var amountToAdd;
-    }
     /**
      * Constructor for this transaction, it initializes this
      * object with all the data needed to both do and undo
@@ -30,8 +23,9 @@ class AddToNum_Transaction extends jsTPS_Transaction {
      */
     constructor(initNum, initAmountToAdd) {
         // KEEP THESE FOR LATER
-        var num = initNum;
-        var amountToAdd = initAmountToAdd;
+        super();
+        this.num = initNum;
+        this.amountToAdd = initAmountToAdd;
     }
 
     /**
@@ -61,6 +55,8 @@ class AddToNum_Transaction extends jsTPS_Transaction {
      */
     //@Override
     toString() {
-        return "Add " + amountToAdd;
+        return "Add " + this.amountToAdd;
     }
 }
+
+export default AddToNum_Transaction

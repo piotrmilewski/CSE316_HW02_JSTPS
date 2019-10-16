@@ -1,11 +1,11 @@
-package junit_test_beds;
+//package junit_test_beds;
 
-import demo.AddToNum_Transaction;
-import demo.AndMask_Transaction;
-import demo.Num;
-import jtps.jTPS;
-import org.junit.Assert;
-import org.junit.Test;
+import AddToNum_Transaction from '../demo/AddToNum_Transaction'
+import AndMask_Transaction from '../demo/AndMask_Transaction'
+import Num from '../demo/Num'
+import jsTPS from '../../jstps/jsTPS'
+//import org.junit.Assert;
+//import org.junit.Test;
 
 /**
  * jTPS_Unit_Tests.java
@@ -15,12 +15,12 @@ import org.junit.Test;
  * @author McKilla Gorilla
  * @version 2.0
  */
-public class jTPS_Unit_Tests {
+class jTPS_Unit_Tests {
     /**
      * This JUnit test is for testing the adding of transactions.
      */
-    @Test
-    public void testAdd() {
+    //@Test
+    testAdd() {
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
         jTPS tps = new jTPS();
         Num num = new Num();
