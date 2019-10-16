@@ -3,17 +3,6 @@ import jsTPS from '../../jstps/jsTPS'
 import Num from './Num'
 import AddToNum_Transaction from './AddToNum_Transaction'
 
-//import java.io.PrintStream;
-//import java.util.Scanner;
-//import jtps.jTPS;
-//import jtps.jTPS_Transaction;
-
-/**
- * This driver demonstrates simple usage of the jTPS API.
- * 
- * @author THE McKilla Gorilla (accept no imposters)
- * @version 2.0
- */
 export class TPSTester extends Component {
     constructor(){
         super();
@@ -76,13 +65,6 @@ export class TPSTester extends Component {
             return false;
     }
 
-    /**
-     * This runs our demo program. Note that it presents a 
-     * menu, retrieves the input, and executes the selected
-     * behavior.
-     * 
-     * @param args Not used in this demo.
-     */
     render() {
         return (
             <div>

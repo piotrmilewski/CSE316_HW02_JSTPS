@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import TPSTester from './test/demo/TPSTester'
+import TPSUnitTests from './test/jsunit_test_beds/TPSUnitTests';
 
 class App extends Component {
 
@@ -11,6 +12,7 @@ class App extends Component {
   }
 
   quit = () => {
+    this.setState({UnitTests: false});
     this.setState({TPSTester: false});
     this.setState({initial: true});
   }
@@ -39,11 +41,8 @@ class App extends Component {
       return <TPSTester 
             quit={this.quit}/>;
     else if (this.state.UnitTests)
-      return (
-        <div>
-          In progress
-        </div>
-      )
+      return <TPSUnitTests
+            quit={this.quit}/>;
   }
 }
 
